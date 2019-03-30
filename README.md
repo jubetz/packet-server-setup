@@ -6,3 +6,9 @@
 4) git clone https://github.com/jubetz/packet-server-setup setup
 5) cd setup
 6) sudo bash setup.sh
+
+
+TODO:
+
+- clone the git repo 6 times to nvme storage
+- create softlinks there from /root
