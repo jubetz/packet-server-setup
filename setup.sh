@@ -25,7 +25,7 @@ mkdir /mnt/nvme/.libvirt
 virsh pool-define-as --name default --type dir --target /mnt/nvme/.libvirt
 virsh pool-autostart default
 virsh pool-start default
-mkdir .vagrant_boxes
+mkdir /mnt/nvme/.vagrant_boxes
 export VAGRANT_HOME=/mnt/nvme/.vagrant_boxes
 vagrant plugin install vagrant-libvirt
 #
