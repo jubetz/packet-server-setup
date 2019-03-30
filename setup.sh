@@ -1,5 +1,9 @@
 #!/bin/bash
-
+#
+# nobody has tested this yet :)
+# probably need to test this out if/when we have to rebuild the server, I'm sure there are mistakes here.
+#
+# This stuff sets up the server with vagrant and libvirt, etc.
 apt-get update -y
 apt-get install libvirt-bin libvirt-dev qemu-utils qemu
 /etc/init.d/libvirt-bin restart
@@ -10,7 +14,7 @@ dpkg -i https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
 vagrant plugin install vagrant-libvirt
 vagrant plugin install vagrant-mutate
 #
-# add the work here for name storage mount and use by qemu/libvirt
+# This is for nvme storage mount then use by qemu/libvirt
 parted -a optimal /dev/nvme0n1 mklabel gpt
 parted -a optimal /dev/nvme0n1 mkpart primary ext4 0% 100%
 mkfs.ext4 /dev/nvme0n1p1
@@ -24,4 +28,9 @@ virsh pool-start default
 mkdir .vagrant_boxes
 export VAGRANT_HOME=/mnt/nvme/.vagrant_boxes
 vagrant plugin install vagrant-libvirt
-
+#
+#
+# TODO:
+# here we should probably clone the repo https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea 6 times (it's private doe)
+# then softlink to it from /root
+# Also add a copy for ssh keys?
