@@ -31,6 +31,6 @@ vagrant plugin install vagrant-libvirt
 #
 #
 # TODO:
-# here we should probably clone the repo https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea 6 times (it's private doe)
+# here we should probably clone the repo https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea 6 times in /mnt/nvme/ (need to make repo public)
 # then softlink to it from /root
 # Also add a copy for ssh keys?
