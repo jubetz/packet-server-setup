@@ -47,8 +47,18 @@ swapon /mnt/nvme/swapfile
 echo "/mnt/nvme/swapfile  none  swap  sw  0 0" >>/etc/fstab
 swapoff /dev/sda2
 #
+# copy repos and softlink them
+git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/1_cldemo-vagrant-netq2ea
+git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/2_cldemo-vagrant-netq2ea
+git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/3_cldemo-vagrant-netq2ea
+git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/4_cldemo-vagrant-netq2ea
+git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/5_cldemo-vagrant-netq2ea
+git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/6_cldemo-vagrant-netq2ea
+ln -s /mnt/nvme/6_cldemo-vagrant-netq2ea /root/6_cldemo-vagrant-netq2ea
+ln -s /mnt/nvme/6_cldemo-vagrant-netq2ea /root/5_cldemo-vagrant-netq2ea
+ln -s /mnt/nvme/6_cldemo-vagrant-netq2ea /root/4_cldemo-vagrant-netq2ea
+ln -s /mnt/nvme/6_cldemo-vagrant-netq2ea /root/3_cldemo-vagrant-netq2ea
+ln -s /mnt/nvme/6_cldemo-vagrant-netq2ea /root/2_cldemo-vagrant-netq2ea
+ln -s /mnt/nvme/6_cldemo-vagrant-netq2ea /root/1_cldemo-vagrant-netq2ea
 #
-# TODO:
-# here we should probably clone the repo https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea 6 times in /mnt/nvme/ (need to make repo public)
-# then softlink to it from /root
 # Also add a copy for ssh keys?
