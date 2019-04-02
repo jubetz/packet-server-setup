@@ -45,6 +45,7 @@ chmod 600 /mnt/nvme/swapfile
 mkswap /mnt/nvme/swapfile
 swapon /mnt/nvme/swapfile
 echo "/mnt/nvme/swapfile  none  swap  sw  0 0" >>/etc/fstab
+swapoff /dev/sda2
 #
 #
 # TODO:
