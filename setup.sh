@@ -1,8 +1,5 @@
 #!/bin/bash
 #
-# nobody has tested this yet :)
-# probably need to test this out if/when we have to rebuild the server, I'm sure there are mistakes here.
-#
 # This stuff sets up the server with vagrant and libvirt, etc.
 apt-get update -y
 apt-get install -qy libvirt-bin libvirt-dev qemu-utils qemu
@@ -12,13 +9,13 @@ usermod -a -G libvirtd root
 wget https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
 dpkg -i vagrant_2.2.4_x86_64.deb
 #
+#
 # This is for nvme storage mount then use by qemu/libvirt
 parted -a optimal /dev/nvme0n1 mklabel gpt
 parted -a optimal /dev/nvme0n1 mkpart primary ext4 0% 100%
 mkfs.ext4 /dev/nvme0n1p1
 mkdir /mnt/nvme
 mount /dev/nvme0n1p1 /mnt/nvme -t ext4
-
 # on a fresh server, the next two commands return
 # don't think we need them.
 #
@@ -32,7 +29,6 @@ mount /dev/nvme0n1p1 /mnt/nvme -t ext4
 #
 #virsh pool-destroy default
 #virsh pool-undefine default
-
 mkdir /mnt/nvme/.libvirt
 virsh pool-define-as --name default --type dir --target /mnt/nvme/.libvirt
 virsh pool-autostart default
