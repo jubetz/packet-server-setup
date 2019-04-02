@@ -16,7 +16,7 @@ parted -a optimal /dev/nvme0n1 mkpart primary ext4 0% 100%
 mkfs.ext4 /dev/nvme0n1p1
 mkdir /mnt/nvme
 mount /dev/nvme0n1p1 /mnt/nvme -t ext4
-echo "/dev/nvme0n1  /mnt/nvme ext4  defaults  0 0" >> /etc/fstab
+echo "/dev/nvme0n1p1  /mnt/nvme ext4  defaults  0 0" >> /etc/fstab
 # on a fresh server, the next two commands return
 # don't think we need them.
 #
