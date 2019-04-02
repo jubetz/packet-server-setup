@@ -1,5 +1,7 @@
 #!/bin/bash
 #
+echo "HEY START THE SCP IMAGE COPY NOW CAUSE ITS LIKE 6GB"
+sleep 3
 # This stuff sets up the server with vagrant and libvirt, etc.
 apt-get update -y
 apt-get install -qy libvirt-bin libvirt-dev qemu-utils qemu git
@@ -17,19 +19,6 @@ mkfs.ext4 /dev/nvme0n1p1
 mkdir /mnt/nvme
 mount /dev/nvme0n1p1 /mnt/nvme -t ext4
 echo "/dev/nvme0n1p1  /mnt/nvme ext4  defaults  0 0" >> /etc/fstab
-# on a fresh server, the next two commands return
-# don't think we need them.
-#
-#root@roobios:~# virsh pool-destroy default
-#error: failed to get pool 'default'
-#error: Storage pool not found: no storage pool with matching name 'default'
-#
-#root@roobios:~# virsh pool-undefine default
-#error: failed to get pool 'default'
-#error: Storage pool not found: no storage pool with matching name 'default'
-#
-#virsh pool-destroy default
-#virsh pool-undefine default
 mkdir /mnt/nvme/.libvirt
 virsh pool-define-as --name default --type dir --target /mnt/nvme/.libvirt
 virsh pool-autostart default
