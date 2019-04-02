@@ -35,26 +35,27 @@ mkswap /mnt/nvme/swapfile
 swapon /mnt/nvme/swapfile
 echo "/mnt/nvme/swapfile  none  swap  sw  0 0" >>/etc/fstab
 swapoff /dev/sda2
+# TODO: remove /dev/sda2 entry from fstab else it comes back at reboot
 #
 # copy repos and softlink them. repo is private right now (ssh keys?) so it asks for user/pass
 # so do it once manually then copy it
+mkdir /mnt/nvme/1_cldemo-vagrant-netq2ea
+mkdir /mnt/nvme/2_cldemo-vagrant-netq2ea
+mkdir /mnt/nvme/3_cldemo-vagrant-netq2ea
+mkdir /mnt/nvme/4_cldemo-vagrant-netq2ea
+mkdir /mnt/nvme/5_cldemo-vagrant-netq2ea
+mkdir /mnt/nvme/6_cldemo-vagrant-netq2ea
 git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/1_cldemo-vagrant-netq2ea
 #git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/2_cldemo-vagrant-netq2ea
 #git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/3_cldemo-vagrant-netq2ea
 #git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/4_cldemo-vagrant-netq2ea
 #git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/5_cldemo-vagrant-netq2ea
 #git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/6_cldemo-vagrant-netq2ea
-mkdir /mnt/nvme/2_cldemo-vagrant-netq2ea
-mkdir /mnt/nvme/3_cldemo-vagrant-netq2ea
-mkdir /mnt/nvme/4_cldemo-vagrant-netq2ea
-mkdir /mnt/nvme/5_cldemo-vagrant-netq2ea
-mkdir /mnt/nvme/6_cldemo-vagrant-netq2ea
 cp -R /mnt/nvme/1_cldemo-vagrant-netq2ea/* /mnt/nvme/2_cldemo-vagrant-netq2ea/
 cp -R /mnt/nvme/1_cldemo-vagrant-netq2ea/* /mnt/nvme/3_cldemo-vagrant-netq2ea/
 cp -R /mnt/nvme/1_cldemo-vagrant-netq2ea/* /mnt/nvme/4_cldemo-vagrant-netq2ea/
 cp -R /mnt/nvme/1_cldemo-vagrant-netq2ea/* /mnt/nvme/5_cldemo-vagrant-netq2ea/
 cp -R /mnt/nvme/1_cldemo-vagrant-netq2ea/* /mnt/nvme/6_cldemo-vagrant-netq2ea/
-#
 ln -s /mnt/nvme/6_cldemo-vagrant-netq2ea /root/6_cldemo-vagrant-netq2ea
 ln -s /mnt/nvme/5_cldemo-vagrant-netq2ea /root/5_cldemo-vagrant-netq2ea
 ln -s /mnt/nvme/4_cldemo-vagrant-netq2ea /root/4_cldemo-vagrant-netq2ea
