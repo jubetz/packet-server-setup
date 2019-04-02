@@ -15,6 +15,7 @@ vagrant plugin install vagrant-libvirt
 vagrant plugin install vagrant-mutate
 #
 # This is for nvme storage mount then use by qemu/libvirt
+apt-get install -qy parted
 parted -a optimal /dev/nvme0n1 mklabel gpt
 parted -a optimal /dev/nvme0n1 mkpart primary ext4 0% 100%
 mkfs.ext4 /dev/nvme0n1p1
