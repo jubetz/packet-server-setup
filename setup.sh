@@ -22,6 +22,15 @@ mkdir /mnt/nvme
 mount /dev/nvme0n1p1 /mnt/nvme -t ext4
 virsh pool-destroy default
 virsh pool-undefine default
+# on a fresh server above commands returned
+#root@roobios:~# virsh pool-destroy default
+#error: failed to get pool 'default'
+#error: Storage pool not found: no storage pool with matching name 'default'
+#
+#root@roobios:~# virsh pool-undefine default
+#error: failed to get pool 'default'
+#error: Storage pool not found: no storage pool with matching name 'default'
+
 mkdir /mnt/nvme/.libvirt
 virsh pool-define-as --name default --type dir --target /mnt/nvme/.libvirt
 virsh pool-autostart default
