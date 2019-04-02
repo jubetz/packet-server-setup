@@ -36,7 +36,7 @@ swapon /mnt/nvme/swapfile
 echo "/mnt/nvme/swapfile  none  swap  sw  0 0" >>/etc/fstab
 swapoff /dev/sda2
 #
-# copy repos and softlink them
+# copy repos and softlink them. repo is private right now so it asks for user/pass
 git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/1_cldemo-vagrant-netq2ea
 git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/2_cldemo-vagrant-netq2ea
 git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/3_cldemo-vagrant-netq2ea
@@ -50,6 +50,15 @@ ln -s /mnt/nvme/3_cldemo-vagrant-netq2ea /root/3_cldemo-vagrant-netq2ea
 ln -s /mnt/nvme/2_cldemo-vagrant-netq2ea /root/2_cldemo-vagrant-netq2ea
 ln -s /mnt/nvme/1_cldemo-vagrant-netq2ea /root/1_cldemo-vagrant-netq2ea
 #
-# Also add a copy for ssh keys?
-# change wbid in the Vagrantfiles
+# update the wbid so the pods don't step on each other
+sed -i -e 's/wbid = 1/wbid = 2/' /mnt/nvme/2_cldemo-vagrant-netq2ea/Vagrantfile
+sed -i -e 's/wbid = 1/wbid = 3/' /mnt/nvme/3_cldemo-vagrant-netq2ea/Vagrantfile
+sed -i -e 's/wbid = 1/wbid = 4/' /mnt/nvme/4_cldemo-vagrant-netq2ea/Vagrantfile
+sed -i -e 's/wbid = 1/wbid = 5/' /mnt/nvme/5_cldemo-vagrant-netq2ea/Vagrantfile
+sed -i -e 's/wbid = 1/wbid = 6/' /mnt/nvme/6_cldemo-vagrant-netq2ea/Vagrantfile
+# 
+# copy ssh keys
+cp /mnt/nvme/1_cldemo-vagrant-netq2ea/authorized_keys /root/.ssh/authorized_keys
+#
+# TODO
 # vagrant box add once scp copy is done
