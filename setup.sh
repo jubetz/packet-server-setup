@@ -18,6 +18,7 @@ vagrant plugin install vagrant-mutate
 parted -a optimal /dev/nvme0n1 mklabel gpt
 parted -a optimal /dev/nvme0n1 mkpart primary ext4 0% 100%
 mkfs.ext4 /dev/nvme0n1p1
+mkdir /mnt/nvme
 mount /dev/nvme0n1p1 /mnt/nvme -t ext4
 virsh pool-destroy default
 virsh pool-undefine default
