@@ -16,6 +16,7 @@ parted -a optimal /dev/nvme0n1 mkpart primary ext4 0% 100%
 mkfs.ext4 /dev/nvme0n1p1
 mkdir /mnt/nvme
 mount /dev/nvme0n1p1 /mnt/nvme -t ext4
+echo "/dev/nvme0n1  /mnt/nvme ext4  defaults  0 0" >> /etc/fstab
 # on a fresh server, the next two commands return
 # don't think we need them.
 #
@@ -37,6 +38,13 @@ mkdir /mnt/nvme/.vagrant_boxes
 export VAGRANT_HOME=/mnt/nvme/.vagrant_boxes
 vagrant plugin install vagrant-libvirt
 vagrant plugin install vagrant-mutate
+#
+# crank up the swapfile size
+fallocate -l 4G /mnt/nvme/swapfile
+chmod 600 /mnt/nvme/swapfile
+mkswap /mnt/nvme/swapfile
+swapon /mnt/nvme/swapfile
+echo "/mnt/nvme/swapfile  none  swap  sw  0 0" >>/etc/fstab
 #
 #
 # TODO:
