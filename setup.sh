@@ -51,3 +51,5 @@ ln -s /mnt/nvme/2_cldemo-vagrant-netq2ea /root/2_cldemo-vagrant-netq2ea
 ln -s /mnt/nvme/1_cldemo-vagrant-netq2ea /root/1_cldemo-vagrant-netq2ea
 #
 # Also add a copy for ssh keys?
+# change wbid in the Vagrantfiles
+# vagrant box add once scp copy is done
