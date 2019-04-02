@@ -2,7 +2,7 @@
 #
 # This stuff sets up the server with vagrant and libvirt, etc.
 apt-get update -y
-apt-get install -qy libvirt-bin libvirt-dev qemu-utils qemu
+apt-get install -qy libvirt-bin libvirt-dev qemu-utils qemu git
 /etc/init.d/libvirt-bin restart
 addgroup libvirtd
 usermod -a -G libvirtd root
