@@ -11,8 +11,6 @@ addgroup libvirtd
 usermod -a -G libvirtd root
 wget https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
 dpkg -i vagrant_2.2.4_x86_64.deb
-vagrant plugin install vagrant-libvirt
-vagrant plugin install vagrant-mutate
 #
 # This is for nvme storage mount then use by qemu/libvirt
 parted -a optimal /dev/nvme0n1 mklabel gpt
@@ -20,9 +18,10 @@ parted -a optimal /dev/nvme0n1 mkpart primary ext4 0% 100%
 mkfs.ext4 /dev/nvme0n1p1
 mkdir /mnt/nvme
 mount /dev/nvme0n1p1 /mnt/nvme -t ext4
-virsh pool-destroy default
-virsh pool-undefine default
-# on a fresh server above commands returned
+
+# on a fresh server, the next two commands return
+# don't think we need them.
+#
 #root@roobios:~# virsh pool-destroy default
 #error: failed to get pool 'default'
 #error: Storage pool not found: no storage pool with matching name 'default'
@@ -30,6 +29,9 @@ virsh pool-undefine default
 #root@roobios:~# virsh pool-undefine default
 #error: failed to get pool 'default'
 #error: Storage pool not found: no storage pool with matching name 'default'
+#
+#virsh pool-destroy default
+#virsh pool-undefine default
 
 mkdir /mnt/nvme/.libvirt
 virsh pool-define-as --name default --type dir --target /mnt/nvme/.libvirt
@@ -38,6 +40,7 @@ virsh pool-start default
 mkdir /mnt/nvme/.vagrant_boxes
 export VAGRANT_HOME=/mnt/nvme/.vagrant_boxes
 vagrant plugin install vagrant-libvirt
+vagrant plugin install vagrant-mutate
 #
 #
 # TODO:
