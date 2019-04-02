@@ -15,6 +15,7 @@ dpkg -i vagrant_2.2.4_x86_64.deb
 # This is for nvme storage mount then use by qemu/libvirt
 parted -a optimal /dev/nvme0n1 mklabel gpt
 parted -a optimal /dev/nvme0n1 mkpart primary ext4 0% 100%
+sleep 5
 mkfs.ext4 /dev/nvme0n1p1
 mkdir /mnt/nvme
 mount /dev/nvme0n1p1 /mnt/nvme -t ext4
