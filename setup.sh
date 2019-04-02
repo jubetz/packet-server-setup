@@ -10,7 +10,7 @@ apt-get install -qy libvirt-bin libvirt-dev qemu-utils qemu
 addgroup libvirtd
 usermod -a -G libvirtd root
 wget https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
-dpkg -i https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
+dpkg -i vagrant_2.2.4_x86_64.deb
 vagrant plugin install vagrant-libvirt
 vagrant plugin install vagrant-mutate
 #
