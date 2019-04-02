@@ -55,10 +55,10 @@ git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvm
 git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/5_cldemo-vagrant-netq2ea
 git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/6_cldemo-vagrant-netq2ea
 ln -s /mnt/nvme/6_cldemo-vagrant-netq2ea /root/6_cldemo-vagrant-netq2ea
-ln -s /mnt/nvme/6_cldemo-vagrant-netq2ea /root/5_cldemo-vagrant-netq2ea
-ln -s /mnt/nvme/6_cldemo-vagrant-netq2ea /root/4_cldemo-vagrant-netq2ea
-ln -s /mnt/nvme/6_cldemo-vagrant-netq2ea /root/3_cldemo-vagrant-netq2ea
-ln -s /mnt/nvme/6_cldemo-vagrant-netq2ea /root/2_cldemo-vagrant-netq2ea
-ln -s /mnt/nvme/6_cldemo-vagrant-netq2ea /root/1_cldemo-vagrant-netq2ea
+ln -s /mnt/nvme/5_cldemo-vagrant-netq2ea /root/5_cldemo-vagrant-netq2ea
+ln -s /mnt/nvme/4_cldemo-vagrant-netq2ea /root/4_cldemo-vagrant-netq2ea
+ln -s /mnt/nvme/3_cldemo-vagrant-netq2ea /root/3_cldemo-vagrant-netq2ea
+ln -s /mnt/nvme/2_cldemo-vagrant-netq2ea /root/2_cldemo-vagrant-netq2ea
+ln -s /mnt/nvme/1_cldemo-vagrant-netq2ea /root/1_cldemo-vagrant-netq2ea
 #
 # Also add a copy for ssh keys?
