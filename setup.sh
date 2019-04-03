@@ -36,7 +36,9 @@ mkswap /mnt/nvme/swapfile
 swapon /mnt/nvme/swapfile
 echo "/mnt/nvme/swapfile  none  swap  sw  0 0" >>/etc/fstab
 swapoff /dev/sda2
-# TODO: remove /dev/sda2 entry from fstab else it comes back at reboot
+# find UUID of that old swap space so we can comment it out in fstab
+SWAP_UUID=`blkid | grep swap | cut -d ' ' -f 2 | cut -d '"' -f 2`
+sed -i -e "s/UUID=$SWAP_UUID/#UUID=$SWAP_UUID/" /etc/fstab
 #
 # copy repos and softlink them. repo is private right now (ssh keys?) so it asks for user/pass
 # so do it once manually then copy it
