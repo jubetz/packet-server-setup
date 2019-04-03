@@ -30,7 +30,7 @@ vagrant plugin install vagrant-libvirt
 vagrant plugin install vagrant-mutate
 #
 # crank up the swapfile size
-fallocate -l 4G /mnt/nvme/swapfile
+fallocate -l 32G /mnt/nvme/swapfile
 chmod 600 /mnt/nvme/swapfile
 mkswap /mnt/nvme/swapfile
 swapon /mnt/nvme/swapfile
