@@ -48,7 +48,7 @@ mkdir /mnt/nvme/3_cldemo-vagrant-netq2ea
 mkdir /mnt/nvme/4_cldemo-vagrant-netq2ea
 mkdir /mnt/nvme/5_cldemo-vagrant-netq2ea
 mkdir /mnt/nvme/6_cldemo-vagrant-netq2ea
-git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/1_cldemo-vagrant-netq2ea
+git clone https://github.com/jubetz/cldemo-vagrant-netq-reinvented /mnt/nvme/1_cldemo-vagrant-netq2ea
 #git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/2_cldemo-vagrant-netq2ea
 #git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/3_cldemo-vagrant-netq2ea
 #git clone https://github.com/CumulusNetworks/cldemo-vagrant-netq2ea.git /mnt/nvme/4_cldemo-vagrant-netq2ea
