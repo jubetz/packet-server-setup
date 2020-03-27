@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# This stuff sets up the server with vagrant and libvirt, etc.
+apt-get update -y
+apt-get install -qy libvirt-bin libvirt-dev qemu-utils qemu git
+addgroup libvirtd
+usermod -a -G libvirtd root
+wget https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
+dpkg -i vagrant_2.2.4_x86_64.deb
+#
+#
+# This is for nvme storage mount then use by qemu/libvirt
+parted -a optimal /dev/nvme0n1 mklabel gpt
+parted -a optimal /dev/nvme0n1 mkpart primary ext4 0% 100%
+sleep 5
+mkfs.ext4 /dev/nvme0n1p1
+mkdir /mnt/nvme
+mount /dev/nvme0n1p1 /mnt/nvme -t ext4
+echo "/dev/nvme0n1p1  /mnt/nvme ext4  defaults  0 0" >> /etc/fstab
+mkdir /mnt/nvme/.libvirt
+virsh pool-define-as --name default --type dir --target /mnt/nvme/.libvirt
+virsh pool-autostart default
+virsh pool-start default
+mkdir /mnt/nvme/.vagrant_boxes
+export VAGRANT_HOME=/mnt/nvme/.vagrant_boxes
+vagrant plugin install vagrant-libvirt
+vagrant plugin install vagrant-mutate
