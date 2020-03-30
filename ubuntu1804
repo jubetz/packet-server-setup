@@ -2,11 +2,12 @@
 #
 # This stuff sets up the server with vagrant and libvirt, etc.
 apt-get update -y
-apt-get install -qy libvirt-bin libvirt-dev qemu-utils qemu git
+apt-get install -qy libvirt-bin libvirt-dev qemu-utils qemu git python3-pip
 addgroup libvirtd
 usermod -a -G libvirtd root
-wget https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
-dpkg -i vagrant_2.2.4_x86_64.deb
+wget https://releases.hashicorp.com/vagrant/2.2.7/vagrant_2.2.7_x86_64.deb
+dpkg -i vagrant_2.2.7_x86_64.deb
+pip3 install pydotplus
 #
 #
 # This is for nvme storage mount then use by qemu/libvirt
