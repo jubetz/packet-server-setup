@@ -74,3 +74,16 @@ ip addr add 172.31.255.251/32 dev lo
 mkdir /mnt/nvme/air-image-builds
 chown gitlab-runner:gitlab-runner /mnt/nvme/air-image-builds
 # dependencies for virt-clone and all that and also b2
+iptables -t nat -A POSTROUTING -s 192.0.2.0/24 -o bond0 -j MASQUERADE
+#
+cat <<EOT > /etc/network/interfaces
+auto netq-bridge
+iface netq-bridge inet static
+    address 192.0.2.1
+    netmask 255.255.255.0
+    bridge_stp off
+    bridge_maxwait 0
+    bridge_ports none
+    dns-nameservers 1.1.1.1
+EOT
+ifup netq-bridge
