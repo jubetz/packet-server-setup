@@ -43,6 +43,12 @@ apt update
 apt install gitlab-runner
 #
 # help gitlab-runner user environment
-adduser gitlab-runner libvirt
-adduser gitlab-runner libvirt-qemu
+mkdir /home/gitlab-runner
+touch /home/gitlab-runner/.cloud-warnings.skip
 echo "export VAGRANT_HOME=/mnt/nvme/.vagrant.d/" >> /home/gitlab-runner/.bash_profile
+chown -R gitlab-runner:gitlab-runner /home/gitlab-runner
+usermod -d /home/gitlab-runner gitlab-runner
+usermod -s /bin/bash gitlab-runner
+usermod -G libvirt gitlab-runner
+usermod -G libvirt-qemu gitlab-runner
+#
