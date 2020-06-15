@@ -53,6 +53,7 @@ apt install gitlab-runner
 #
 # help gitlab-runner user environment
 mkdir /home/gitlab-runner
+mkdir /var/lib/gitlab-runner
 touch /home/gitlab-runner/.cloud-warnings.skip
 echo "export VAGRANT_HOME=/mnt/nvme/.vagrant.d/" >> /home/gitlab-runner/.bash_profile
 chown -R gitlab-runner:gitlab-runner /home/gitlab-runner
