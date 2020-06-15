@@ -64,6 +64,9 @@ chown -R gitlab-runner:gitlab-runner /mnt/nvme/.vagrant.d/
 #
 # Other dependencies
 pip3 install pydotplus
+pip3 install gitlab-job-guard
+pip3 install b2sdk
+pip3 install yamllint
 #
 # additional ip addresses on loopback
 ip addr add 172.31.255.254/32 dev lo
