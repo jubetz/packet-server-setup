@@ -1,1 +1,45 @@
-hey
+#!/bin/bash
+#
+# updates and initial package install
+apt update -y
+apt install -qy qemu ebtables dnsmasq-base qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virt-manager python3-pip
+apt install -qy libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev
+#apt-get build-dep ruby-libvirt
+#
+# vagrant install
+wget https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb
+dpkg -i vagrant_2.2.9_x86_64.deb
+#
+pip3 install pydotplus
+#
+# setup nvme drive
+parted -a optimal /dev/nvme0n1 mklabel gpt
+parted -a optimal /dev/nvme0n1 mkpart primary ext4 0% 100%
+sleep 5
+mkfs.ext4 /dev/nvme0n1p1
+mkdir /mnt/nvme
+mount /dev/nvme0n1p1 /mnt/nvme -t ext4
+echo "/dev/nvme0n1p1  /mnt/nvme ext4  defaults  0 0" >> /etc/fstab
+#
+# change vagrant and libvirt to use nvme
+mkdir /mnt/nvme/.libvirt
+virsh pool-define-as --name default --type dir --target /mnt/nvme/.libvirt
+virsh pool-autostart default
+virsh pool-start default
+cp -r .vagrant.d/ /mnt/nvme/.vagrant.d
+chmod -R 777 /mnt/nvme/.vagrant.d/
+export VAGRANT_HOME=/mnt/nvme/.vagrant.d/
+echo "export VAGRANT_HOME=/mnt/nvme/.vagrant.d/" >> ~/.bash_profile
+#
+#
+vagrant plugin install vagrant-libvirt
+vagrant plugin install vagrant-mutate
+#
+# install gitlab-runner
+curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
+apt install gitlab-runner
+#
+# help gitlab-runner user environment
+adduser gitlab-runner libvirt
+adduser gitlab-runner libvirt-qemu
+echo "export VAGRANT_HOME=/mnt/nvme/.vagrant.d/" >> /home/gitlab-runner/.bash_profile
