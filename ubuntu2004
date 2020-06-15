@@ -37,6 +37,9 @@ vagrant plugin install vagrant-mutate
 #
 # install gitlab-runner
 curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
+# bug in gitlab-runner install *eyeroll*
+sed -i 's/focal/bionic/g' /etc/apt/sources.list.d/runner_gitlab-runner.list 
+apt update
 apt install gitlab-runner
 #
 # help gitlab-runner user environment
