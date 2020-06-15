@@ -76,7 +76,7 @@ ip addr add 172.31.255.251/32 dev lo
 #
 mkdir /mnt/nvme/air-image-builds
 chown gitlab-runner:gitlab-runner /mnt/nvme/air-image-builds
-# dependencies for virt-clone and all that and also b2
+# dependencies for virt-clone and all that
 iptables -t nat -A POSTROUTING -s 192.0.2.0/24 -o bond0 -j MASQUERADE
 #
 cat <<EOT > /etc/network/interfaces
