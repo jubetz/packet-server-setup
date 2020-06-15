@@ -10,8 +10,6 @@ apt install -qy libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev
 wget https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb
 dpkg -i vagrant_2.2.9_x86_64.deb
 #
-pip3 install pydotplus
-#
 # setup nvme drive
 parted -a optimal /dev/nvme0n1 mklabel gpt
 parted -a optimal /dev/nvme0n1 mkpart primary ext4 0% 100%
@@ -52,3 +50,5 @@ usermod -s /bin/bash gitlab-runner
 usermod -G libvirt gitlab-runner
 usermod -G libvirt-qemu gitlab-runner
 #
+# Other dependencies
+pip3 install pydotplus
