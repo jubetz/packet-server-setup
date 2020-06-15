@@ -65,6 +65,12 @@ chown -R gitlab-runner:gitlab-runner /mnt/nvme/.vagrant.d/
 # Other dependencies
 pip3 install pydotplus
 #
+# additional ip addresses on loopback
+ip addr add 172.31.255.254/32 dev lo
+ip addr add 172.31.255.253/32 dev lo
+ip addr add 172.31.255.252/32 dev lo
+ip addr add 172.31.255.251/32 dev lo
+#
 mkdir /mnt/nvme/air-image-builds
 chown gitlab-runner:gitlab-runner /mnt/nvme/air-image-builds
 # dependencies for virt-clone and all that and also b2
