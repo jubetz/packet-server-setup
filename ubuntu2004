@@ -49,6 +49,11 @@ usermod -d /home/gitlab-runner gitlab-runner
 usermod -s /bin/bash gitlab-runner
 usermod -G libvirt gitlab-runner
 usermod -G libvirt-qemu gitlab-runner
+chown -R gitlab-runner:gitlab-runner /mnt/nvme/.vagrant.d/
 #
 # Other dependencies
 pip3 install pydotplus
+#
+mkdir /mnt/nvme/air-image-builds
+chown gitlab-runner:gitlab-runner /mnt/nvme/air-image-builds
+# dependencies for virt-clone and all that and also b2
