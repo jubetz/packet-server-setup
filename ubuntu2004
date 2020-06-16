@@ -74,6 +74,7 @@ ip addr add 172.31.255.254/32 dev lo
 ip addr add 172.31.255.253/32 dev lo
 ip addr add 172.31.255.252/32 dev lo
 ip addr add 172.31.255.251/32 dev lo
+ip addr add 172.31.255.250/32 dev lo
 #
 mkdir /mnt/nvme/air-image-builds
 chown gitlab-runner:gitlab-runner /mnt/nvme/air-image-builds
